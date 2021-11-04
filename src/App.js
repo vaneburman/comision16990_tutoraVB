@@ -19,7 +19,7 @@ function App() {
         </a>
         <p> Lista 1 </p>
         <ul>
-          <li> Hola </li>
+          <li> Soy Vane </li>
         </ul>
       </header>
     </div>
