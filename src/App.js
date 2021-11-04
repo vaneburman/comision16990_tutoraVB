@@ -17,7 +17,7 @@ function App() {
         >
           CoderHouse
         </a>
-        <p> Lista </p>
+        <p> Lista 1 </p>
         <ul>
           <li> Hola </li>
         </ul>
