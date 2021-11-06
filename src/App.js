@@ -1,14 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Bienvenidos al after de Git
-        </p>
+        <p>Bienvenidos al after de Git</p>
         <a
           className="App-link"
           href="https://coderhouse.com"
@@ -19,7 +17,7 @@ function App() {
         </a>
         <p> Lista 1 </p>
         <ul>
-          <li> Soy Vane </li>
+          <li> Soy Nico </li>
         </ul>
       </header>
     </div>
