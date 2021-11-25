@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ItemList from './ItemList';
-import { ListaProductos } from './ListaProductos'
+import { ListaProductos } from '../ListaProductos';
+import { useParams } from 'react-router-dom';
 
 
 const ItemListContainer = () =>{
@@ -10,16 +11,19 @@ const ItemListContainer = () =>{
     const [productos, setProductos]= useState([]);
     const [loading, setLoading] = useState(true);
    
+    const { catIdParams } = useParams(); //tomo el params de la url y lo guardo en una variable.
     //La promesa la pueden hacer en un helper... yo la hago acá para que se note bien bien el patrón de que el container hace el pedido. 
       useEffect(() => {
           const promesa = new Promise ((res, rej)=> {
+              setLoading(true);
               setTimeout(()=> {
                   res(ListaProductos)
               }, 2000)
           })
+          if(catIdParams){
           promesa.then((ListaProductos)=>{
-              console.log('OK');
-              setProductos(ListaProductos)
+              console.log('OK el filtrado');
+              setProductos(ListaProductos.filter(producto => producto.categoria === catIdParams)) //aca lo comparo de modo estricto porque la categoria de mi lista es String y el params también es String
           })
             .catch((error)=>{
                 console.log('ERROR');
@@ -28,9 +32,19 @@ const ItemListContainer = () =>{
                 setLoading(false)
             }
             )
-        }, [])
-     //el segundo parámetro es un array vacío porque no queremos que se ejecute el useEffect cada vez que se renderice el componente.
-
+        } else {
+            promesa.then((ListaProductos)=>{
+                console.log('OK sin filtrar');
+                setProductos(ListaProductos)
+            })
+            .catch((error)=>{
+                console.log('ERROR');
+            })
+            .finally(()=>{
+                setLoading(false)
+            })
+        }}, [catIdParams])
+     //el segundo parámetro es la dependencia de la variable id, porque si cambia el id, se ejecuta el useEffect de vuelta para pedirme nuevamente la lista de productos de esa categoria.
     console.log(productos)
     
 

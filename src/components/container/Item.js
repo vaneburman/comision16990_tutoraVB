@@ -1,5 +1,6 @@
 import React from 'react';
-import ItemCount from './ItemCount';
+import ItemCount from '../ItemCount';
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,7 +16,9 @@ export default function Item({item}) {
             <li key={item.id}>
                 <div>
                     <div>
+                        <Link to={`/item/${item.id}`}>
                         <img src={item.pictureURL} alt={item.title} />
+                        </Link>
                     </div>
                     <div>
                         <h3>{item.title}</h3>
